@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   <div class="navbar"> 
+    <div>
+       <img class="hamburger-menu" src="./images/icon-menu.svg" alt="menu">
+       <img src="./images/logo.svg" alt="logo">
+
+    <ul>
+     <li>Collections</li>
+ <li>Men</li>
+ <li>Women</li>
+ <li>About</li>
+ <li>Contact</li>
+    </ul>
+    </div>
+<div>
+    <img class="cart" src="./images/icon-cart.svg" alt="cart">
+    <img class="avatar" src="./images/image-avatar.png" alt="avatar">
+</div>
+ </div>
+
+ <!-- Desktop Modal Gallery -->
+ <div id="modal-gallery" class="modal-gallery">
+   <div class="modal-content">
+     <button class="close-modal" onclick="closeModal()">
+       <img src="./images/icon-close.svg" alt="Close">
+     </button>
+     <div class="modal-image-container">
+       <img class="modal-nav-arrow modal-nav-prev" src="./images/icon-previous.svg" alt="Previous" onclick="previousImageModal()">
+       <img id="modalMainImg" src="./images/image-product-1.jpg" alt="Main Product Image">
+       <img class="modal-nav-arrow modal-nav-next" src="./images/icon-next.svg" alt="Next" onclick="nextImageModal()">
+     </div>
+     <div class="modal-thumbnails">
+       <img class="modal-thumbnail active" src="./images/image-product-1-thumbnail.jpg" alt="Product 1" onclick="changeImageModal('./images/image-product-1.jpg', this)">
+       <img class="modal-thumbnail" src="./images/image-product-2-thumbnail.jpg" alt="Product 2" onclick="changeImageModal('./images/image-product-2.jpg', this)">
+       <img class="modal-thumbnail" src="./images/image-product-3-thumbnail.jpg" alt="Product 3" onclick="changeImageModal('./images/image-product-3.jpg', this)">
+       <img class="modal-thumbnail" src="./images/image-product-4-thumbnail.jpg" alt="Product 4" onclick="changeImageModal('./images/image-product-4.jpg', this)">
+     </div>
+   </div>
+ </div>
+
+ <div class="content">
+    <div class="gallery">
+        <div class="main-image">
+          <img class="nav-arrow nav-prev" src="./images/icon-previous.svg" alt="Previous" onclick="previousImage()">
+          <img id="mainImg" src="./images/image-product-1.jpg" alt="Main Product Image" onclick="openModal()">
+          <img class="nav-arrow nav-next" src="./images/icon-next.svg" alt="Next" onclick="nextImage()">
+        </div>
+        
+        <div class="thumbnails">
+          <img class="thumbnail active" src="./images/image-product-1.jpg" alt="Product 1" onclick="changeImage('./images/image-product-1.jpg', this)">
+          <img class="thumbnail" src="./images/image-product-2.jpg" alt="Product 2" onclick="changeImage('./images/image-product-2.jpg', this)">
+          <img class="thumbnail" src="./images/image-product-3.jpg" alt="Product 3" onclick="changeImage('./images/image-product-3.jpg', this)">
+          <img class="thumbnail" src="./images/image-product-4.jpg" alt="Product 4" onclick="changeImage('./images/image-product-4.jpg', this)">
+        </div>
+      </div>
+
+      <div class="info">
+        <p>SNEAKER COMPANY</p>
+        <h1>Fall Limited Edition Sneakers</h1>
+        <p>These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they'll withstand everything the weather can offer.</p>
+        <div class="price-container">
+        <div class="price">
+            <h1>$125.00</h1>
+            <p>50%</p>
+        </div>
+            <p class="original-price">$250.00</p>
+        </div>
+        <div class="buttons">
+            <div class="quantity">
+                <button class="qty-btn" onclick="decreaseQuantity()">-</button>
+                <span class="qty-display" id="quantity">1</span>
+                <button class="qty-btn" onclick="increaseQuantity()">+</button>
+            </div>
+            <button class="add-to-cart" >
+                <img src="./images/icon-cart.svg" alt="cart">
+                <span>Add to cart</span>
+            </button>
+        </div>
+      </div>
+ </div>
+
+
+
+ 
+ 
+ <script>
+   let quantity = 1;
+   let currentImageIndex = 0;
+   let modalCurrentImageIndex = 0;
+   const images = [
+     './images/image-product-1.jpg',
+     './images/image-product-2.jpg',
+     './images/image-product-3.jpg',
+     './images/image-product-4.jpg'
+   ];
+
+
+
+   // Main gallery
+   function changeImage(src, thumbnail) {
+     document.getElementById('mainImg').src = src;
+     document.querySelectorAll('.thumbnail').forEach(img => img.classList.remove('active'));
+     thumbnail.classList.add('active');
+     
+    
+     
+
+     currentImageIndex = images.indexOf(src);
+   }
+
+   function nextImage() {
+     currentImageIndex = (currentImageIndex + 1) % images.length;
+     updateMainImage();
+   }
+
+   function previousImage() {
+     currentImageIndex = currentImageIndex === 0 ? images.length - 1 : currentImageIndex - 1;
+     updateMainImage();
+   }
+
+   function updateMainImage() {
+     document.getElementById('mainImg').src = images[currentImageIndex];
+    
+
+     document.querySelectorAll('.thumbnail').forEach((img, index) => {
+       img.classList.toggle('active', index === currentImageIndex);
+     });
+   }
+
+
+
+
+   // Modal gallery 
+   function openModal() {
+     document.getElementById('modal-gallery').style.display = 'flex';
+     document.body.style.overflow = 'hidden';
+     modalCurrentImageIndex = currentImageIndex;
+     updateModalImage();
+   }
+
+   function closeModal() {
+     document.getElementById('modal-gallery').style.display = 'none';
+     document.body.style.overflow = 'auto';
+   }
+
+   function changeImageModal(src, thumbnail) {
+     document.getElementById('modalMainImg').src = src;
+     document.querySelectorAll('.modal-thumbnail').forEach(img => img.classList.remove('active'));
+     thumbnail.classList.add('active');
+     
+     modalCurrentImageIndex = images.indexOf(src);
+   }
+
+   function nextImageModal() {
+     modalCurrentImageIndex = (modalCurrentImageIndex + 1) % images.length;
+     updateModalImage();
+   }
+
+   function previousImageModal() {
+     modalCurrentImageIndex = modalCurrentImageIndex === 0 ? images.length - 1 : modalCurrentImageIndex - 1;
+     updateModalImage();
+   }
+
+   function updateModalImage() {
+     document.getElementById('modalMainImg').src = images[modalCurrentImageIndex];
+      
+
+
+     document.querySelectorAll('.modal-thumbnail').forEach((img, index) => {
+       img.classList.toggle('active', index === modalCurrentImageIndex);
+     });
+   }
+
+
+
+   function increaseQuantity() {
+     quantity++;
+     document.getElementById('quantity').textContent = quantity;
+   }
+
+   function decreaseQuantity() {
+     if (quantity > 1) {
+       quantity--;
+       document.getElementById('quantity').textContent = quantity;
+     }
+   }
+
+ </script>
+</body>
+</html>
