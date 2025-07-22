@@ -68,10 +68,10 @@
         <p>These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they'll withstand everything the weather can offer.</p>
         <div class="price-container">
         <div class="price">
-            <h1>$125.00</h1>
+            <h1 id="current-price">$125.00</h1>
             <p>50%</p>
         </div>
-            <p class="original-price">$250.00</p>
+            <p class="original-price" id="original-price">$250.00</p>
         </div>
         <div class="buttons">
             <div class="quantity">
@@ -95,6 +95,10 @@
    let quantity = 1;
    let currentImageIndex = 0;
    let modalCurrentImageIndex = 0;
+   const basePrice = 125.00; 
+
+   
+   const originalBasePrice = 250.00; 
    const images = [
      './images/image-product-1.jpg',
      './images/image-product-2.jpg',
@@ -181,15 +185,26 @@
 
 
 
+   function updatePrices() {
+     const totalPrice = (basePrice * quantity).toFixed(2);
+     
+     document.getElementById('current-price').textContent = `$${totalPrice}`;
+    
+
+
+   }
+
    function increaseQuantity() {
      quantity++;
      document.getElementById('quantity').textContent = quantity;
+     updatePrices();
    }
 
    function decreaseQuantity() {
      if (quantity > 1) {
        quantity--;
        document.getElementById('quantity').textContent = quantity;
+       updatePrices();
      }
    }
 
