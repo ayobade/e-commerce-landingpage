@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-   <div class="navbar"> 
+      <div class="navbar"> 
     <div>
-       <img class="hamburger-menu" src="./images/icon-menu.svg" alt="menu">
+       <img class="hamburger-menu" src="./images/icon-menu.svg" alt="menu" onclick="toggleMobileMenu()">
        <a href="index.html"><img src="./images/logo.svg" alt="logo"></a>
 
     <ul>
@@ -21,15 +21,51 @@
     </ul>
     </div>
 <div>
-    <img class="cart" src="./images/icon-cart.svg" alt="cart">
+    <div class="cart-container">
+        <img class="cart" src="./images/icon-cart.svg" alt="cart" onclick="toggleCartDropdown()">
+        <span class="cart-counter" id="cart-counter">0</span>
+        
+        <!-- Cart Dropdown -->
+        <div class="cart-dropdown" id="cart-dropdown">
+            <div class="cart-dropdown-header">
+                <h3>Cart</h3>
+                <img src="./images/icon-close.svg" alt="Close Cart" class="cart-close-btn" onclick="closeCart()">
+            </div>
+            <div class="cart-dropdown-content" id="cart-content">
+                <p class="empty-cart-message">Your cart is empty</p>
+            </div>
+        </div>
+    </div>
     <img class="avatar" src="./images/image-avatar.png" alt="avatar">
 </div>
+ </div>
+
+ <!-- Mobile Navigation Menu -->
+ <div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-menu-overlay" onclick="closeMobileMenu()"></div>
+    <div class="mobile-menu-content">
+        <div class="mobile-menu-header">
+            <a href="index.html" onclick="closeMobileMenu()">
+                <img src="./images/logo.svg" alt="logo" class="mobile-menu-logo">
+            </a>
+            <img src="./images/icon-close.svg" alt="Close Menu" class="mobile-menu-close" onclick="closeMobileMenu()">
+        </div>
+        <ul class="mobile-nav-list">
+            <li><a href="collections.html" onclick="closeMobileMenu()">Collections</a></li>
+            <li><a href="men.html" onclick="closeMobileMenu()">Men</a></li>
+            <li><a href="women.html" onclick="closeMobileMenu()">Women</a></li>
+            <li><a href="about.html" onclick="closeMobileMenu()">About</a></li>
+            <li><a href="contact.html" onclick="closeMobileMenu()">Contact</a></li>
+        </ul>
+    </div>
  </div>
 
  <div class="content" style="margin-top: 200px; text-align: center;">
     <h1 style="font-size: 48px; color: hsl(220, 13%, 13%); font-weight: 700;">Collections</h1>
     <p style="font-size: 18px; color: hsl(219, 9%, 45%); margin-top: 20px;">Welcome to our Collections page</p>
  </div>
+
+<script src="script.js"></script>
 
 </body>
 </html> 

@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-   <div class="navbar"> 
+      <div class="navbar"> 
     <div>
-       <img class="hamburger-menu" src="./images/icon-menu.svg" alt="menu">
+       <img class="hamburger-menu" src="./images/icon-menu.svg" alt="menu" onclick="toggleMobileMenu()">
        <a href="index.html"><img src="./images/logo.svg" alt="logo"></a>
 
     <ul>
@@ -21,9 +21,43 @@
     </ul>
     </div>
 <div>
-    <img class="cart" src="./images/icon-cart.svg" alt="cart">
+    <div class="cart-container">
+        <img class="cart" src="./images/icon-cart.svg" alt="cart" onclick="toggleCartDropdown()">
+        <span class="cart-counter" id="cart-counter">0</span>
+        
+        <!-- Cart Dropdown -->
+        <div class="cart-dropdown" id="cart-dropdown">
+            <div class="cart-dropdown-header">
+                <h3>Cart</h3>
+                <img src="./images/icon-close.svg" alt="Close Cart" class="cart-close-btn" onclick="closeCart()">
+            </div>
+            <div class="cart-dropdown-content" id="cart-content">
+                <p class="empty-cart-message">Your cart is empty</p>
+            </div>
+        </div>
+    </div>
     <img class="avatar" src="./images/image-avatar.png" alt="avatar">
 </div>
+ </div>
+
+ <!-- Mobile Navigation Menu -->
+ <div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-menu-overlay" onclick="closeMobileMenu()"></div>
+    <div class="mobile-menu-content">
+        <div class="mobile-menu-header">
+            <a href="index.html" onclick="closeMobileMenu()">
+                <img src="./images/logo.svg" alt="logo" class="mobile-menu-logo">
+            </a>
+            <img src="./images/icon-close.svg" alt="Close Menu" class="mobile-menu-close" onclick="closeMobileMenu()">
+        </div>
+        <ul class="mobile-nav-list">
+            <li><a href="collections.html" onclick="closeMobileMenu()">Collections</a></li>
+            <li><a href="men.html" onclick="closeMobileMenu()">Men</a></li>
+            <li><a href="women.html" onclick="closeMobileMenu()">Women</a></li>
+            <li><a href="about.html" onclick="closeMobileMenu()">About</a></li>
+            <li><a href="contact.html" onclick="closeMobileMenu()">Contact</a></li>
+        </ul>
+    </div>
  </div>
 
  <!-- Desktop Modal Gallery -->
@@ -79,7 +113,7 @@
                 <span class="qty-display" id="quantity">1</span>
                 <button class="qty-btn" onclick="increaseQuantity()">+</button>
             </div>
-            <button class="add-to-cart" >
+            <button class="add-to-cart" onclick="addToCart()">
                 <img src="./images/icon-cart.svg" alt="cart">
                 <span>Add to cart</span>
             </button>
@@ -89,125 +123,6 @@
 
 
 
- 
- 
- <script>
-   let quantity = 1;
-   let currentImageIndex = 0;
-   let modalCurrentImageIndex = 0;
-   const basePrice = 125.00; 
-
-   
-   const originalBasePrice = 250.00; 
-   const images = [
-     './images/image-product-1.jpg',
-     './images/image-product-2.jpg',
-     './images/image-product-3.jpg',
-     './images/image-product-4.jpg'
-   ];
-
-
-
-   // Main gallery
-   function changeImage(src, thumbnail) {
-     document.getElementById('mainImg').src = src;
-     document.querySelectorAll('.thumbnail').forEach(img => img.classList.remove('active'));
-     thumbnail.classList.add('active');
-     
-    
-     
-
-     currentImageIndex = images.indexOf(src);
-   }
-
-   function nextImage() {
-     currentImageIndex = (currentImageIndex + 1) % images.length;
-     updateMainImage();
-   }
-
-   function previousImage() {
-     currentImageIndex = currentImageIndex === 0 ? images.length - 1 : currentImageIndex - 1;
-     updateMainImage();
-   }
-
-   function updateMainImage() {
-     document.getElementById('mainImg').src = images[currentImageIndex];
-    
-
-     document.querySelectorAll('.thumbnail').forEach((img, index) => {
-       img.classList.toggle('active', index === currentImageIndex);
-     });
-   }
-
-
-
-
-   // Modal gallery 
-   function openModal() {
-     document.getElementById('modal-gallery').style.display = 'flex';
-     document.body.style.overflow = 'hidden';
-     modalCurrentImageIndex = currentImageIndex;
-     updateModalImage();
-   }
-
-   function closeModal() {
-     document.getElementById('modal-gallery').style.display = 'none';
-     document.body.style.overflow = 'auto';
-   }
-
-   function changeImageModal(src, thumbnail) {
-     document.getElementById('modalMainImg').src = src;
-     document.querySelectorAll('.modal-thumbnail').forEach(img => img.classList.remove('active'));
-     thumbnail.classList.add('active');
-     
-     modalCurrentImageIndex = images.indexOf(src);
-   }
-
-   function nextImageModal() {
-     modalCurrentImageIndex = (modalCurrentImageIndex + 1) % images.length;
-     updateModalImage();
-   }
-
-   function previousImageModal() {
-     modalCurrentImageIndex = modalCurrentImageIndex === 0 ? images.length - 1 : modalCurrentImageIndex - 1;
-     updateModalImage();
-   }
-
-   function updateModalImage() {
-     document.getElementById('modalMainImg').src = images[modalCurrentImageIndex];
-      
-
-
-     document.querySelectorAll('.modal-thumbnail').forEach((img, index) => {
-       img.classList.toggle('active', index === modalCurrentImageIndex);
-     });
-   }
-
-
-
-   function updatePrices() {
-     const totalPrice = (basePrice * quantity).toFixed(2);
-     
-     document.getElementById('current-price').textContent = `$${totalPrice}`;
-    
-
-
-   }
-
-   function increaseQuantity() {
-     quantity++;
-     document.getElementById('quantity').textContent = quantity;
-     updatePrices();
-   }
-
-   function decreaseQuantity() {
-     if (quantity > 1) {
-       quantity--;
-       document.getElementById('quantity').textContent = quantity;
-       updatePrices();
-     }
-   }
-
- </script>
+<script src="script.js"></script>
 </body>
 </html>
