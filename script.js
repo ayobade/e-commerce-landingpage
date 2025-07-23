@@ -295,12 +295,34 @@ function closeMobileMenu() {
   }
 }
 
+function toggleProfileMenu() {
+  const profileMenu = document.getElementById('profile-menu');
+  if (profileMenu) {
+    profileMenu.style.display = profileMenu.style.display === 'block' ? 'none' : 'block';
+  }
+}
+
+function closeProfileMenu() {
+  const profileMenu = document.getElementById('profile-menu');
+  if (profileMenu) {
+    profileMenu.style.display = 'none';
+  }
+}
+
 document.addEventListener('click', function(event) {
   const cartContainer = document.querySelector('.cart-container');
   const dropdown = document.getElementById('cart-dropdown');
+  const profileContainer = document.querySelector('.profile-container');
+  const profileMenu = document.getElementById('profile-menu');
   
   if (!cartContainer.contains(event.target)) {
     dropdown.style.display = 'none';
+  }
+  
+  if (profileContainer && !profileContainer.contains(event.target)) {
+    if (profileMenu) {
+      profileMenu.style.display = 'none';
+    }
   }
 });
 
@@ -308,6 +330,13 @@ document.addEventListener('DOMContentLoaded', function() {
   const dropdown = document.getElementById('cart-dropdown');
   if (dropdown) {
     dropdown.addEventListener('click', function(event) {
+      event.stopPropagation();
+    });
+  }
+  
+  const profileMenu = document.getElementById('profile-menu');
+  if (profileMenu) {
+    profileMenu.addEventListener('click', function(event) {
       event.stopPropagation();
     });
   }

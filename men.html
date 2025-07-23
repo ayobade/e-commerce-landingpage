@@ -36,7 +36,25 @@
             </div>
         </div>
     </div>
-    <img class="avatar" src="./images/image-avatar.png" alt="avatar">
+    <div class="profile-container">
+        <img class="avatar" src="./images/image-avatar.png" alt="avatar" onclick="toggleProfileMenu()">
+        
+        <!-- Profile Dropdown -->
+        <div class="profile-menu" id="profile-menu">
+            <div class="profile-menu-header">
+                <img src="./images/image-avatar.png" alt="avatar" class="profile-menu-avatar">
+                <div class="profile-info">
+                    <h4>John Doe</h4>
+                    <p>john.doe@email.com</p>
+                </div>
+            </div>
+            <div class="profile-menu-content">
+                <ul class="profile-menu-list">
+                    <li><a href="#logout" class="logout">Sign Out</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>
  </div>
 

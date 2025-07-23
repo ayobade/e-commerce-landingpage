@@ -319,6 +319,108 @@ body {
     opacity: 0.7;
 }
 
+.profile-container {
+    position: relative;
+    display: inline-block;
+}
+
+.navbar img.avatar {
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+    border-radius: 50%;
+}
+
+.navbar img.avatar:hover {
+    opacity: 0.8;
+}
+
+.profile-menu {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    width: 280px;
+    background-color: hsl(0, 0%, 100%);
+    border-radius: 10px;
+    box-shadow: 0 20px 50px -20px rgba(29, 32, 38, 0.503143);
+    z-index: 1001;
+    overflow: hidden;
+}
+
+.profile-menu-header {
+    padding: 20px;
+    background: linear-gradient(135deg, hsl(26, 100%, 55%) 0%, hsl(26, 100%, 45%) 100%);
+    color: hsl(0, 0%, 100%);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.profile-menu-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid hsl(0, 0%, 100%);
+}
+
+.profile-info h4 {
+    margin: 0 0 5px 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: hsl(0, 0%, 100%);
+}
+
+.profile-info p {
+    margin: 0;
+    font-size: 14px;
+    color: hsla(0, 0%, 100%, 0.8);
+}
+
+.profile-menu-content {
+    padding: 0;
+}
+
+.profile-menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.profile-menu-list li {
+    border-bottom: 1px solid hsl(220, 14%, 93%);
+}
+
+.profile-menu-list li.divider {
+    height: 1px;
+    background-color: hsl(220, 14%, 85%);
+    border: none;
+    margin: 8px 0;
+}
+
+.profile-menu-list li a {
+    display: block;
+    padding: 15px 20px;
+    color: hsl(220, 13%, 13%);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 400;
+    transition: background-color 0.3s ease;
+}
+
+.profile-menu-list li a:hover {
+    background-color: hsl(223, 64%, 98%);
+    color: hsl(26, 100%, 55%);
+}
+
+.profile-menu-list li a.logout {
+    color: hsl(0, 100%, 60%);
+}
+
+.profile-menu-list li a.logout:hover {
+    background-color: hsla(0, 100%, 60%, 0.1);
+    color: hsl(0, 100%, 50%);
+}
+
 
 .hamburger-menu {
     display: none;
@@ -1066,6 +1168,62 @@ body {
 
     .cart-item-total {
         font-size: 14px;
+    }
+
+    .profile-menu {
+        width: 250px;
+        top: 45px;
+        right: 0;
+    }
+
+    .profile-menu-header {
+        padding: 15px;
+    }
+
+    .profile-menu-avatar {
+        width: 40px;
+        height: 40px;
+    }
+
+    .profile-info h4 {
+        font-size: 14px;
+    }
+
+    .profile-info p {
+        font-size: 12px;
+    }
+
+    .profile-menu-list li a {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+    .profile-menu {
+        width: calc(100vw - 40px);
+        max-width: 240px;
+        top: 40px;
+        right: 0;
+    }
+
+    .profile-menu-header {
+        padding: 12px;
+    }
+
+    .profile-menu-avatar {
+        width: 35px;
+        height: 35px;
+    }
+
+    .profile-info h4 {
+        font-size: 13px;
+    }
+
+    .profile-info p {
+        font-size: 11px;
+    }
+
+    .profile-menu-list li a {
+        padding: 10px 12px;
+        font-size: 13px;
     }
 
     .cart-actions {
