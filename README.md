@@ -1,4 +1,4 @@
-This is a responsive e-commerce product page built as part of a Frontend Mentor challenge. It features a clean layout, interactive cart functionality, image galleries, and responsive behavior across devices.
+This is a responsive e-commerce product page . It features a clean layout, interactive cart functionality, image galleries, and responsive behavior across devices.
 
 
  
